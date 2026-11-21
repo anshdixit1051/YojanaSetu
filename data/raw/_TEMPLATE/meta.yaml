@@ -1,0 +1,14 @@
+# Copy this whole _TEMPLATE folder to data/raw/<scheme-id>/ (slug, lowercase, hyphens).
+# Fill every field. Do NOT guess: if you don't know it, leave it as "TODO" and fix before use.
+scheme_id: example-scheme-slug          # must equal the folder name
+name_en: Example Scheme Name            # official English name, as printed in the source
+name_hi: ""                             # official Hindi name, if the source has one
+category: scholarship                   # scholarship | farmer | health | pension | business-credit | women-girl
+level: central                          # central | state
+state: ""                               # state name if level is state, else empty
+source_url: https://example.gov.in/...  # exact official page or PDF the text came from
+source_type: guidelines-pdf             # guidelines-pdf | gazette | portal-page | other
+source_language: en                     # en | hi | bilingual
+download_date: 2026-11-21               # YYYY-MM-DD, the day you copied the text
+source_sha256: ""                       # filled by the validation script (later)
+notes: ""                               # anything odd about the source (scanned, partial, etc.)

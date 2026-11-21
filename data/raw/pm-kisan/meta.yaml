@@ -1,0 +1,12 @@
+scheme_id: pm-kisan
+name_en: "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)"
+name_hi: "प्रधानमंत्री किसान सम्मान निधि"
+category: farmer
+level: central
+state: ""
+source_url: https://pmkisan.gov.in/Documents/Revised_PM-KISAN_Operational_Guidelines_English.pdf
+source_type: guidelines-pdf
+source_language: en
+download_date: 2026-11-21
+source_sha256: "05e44609389d3b749696695ef9c2fa831d8e446dc2242cfafbe3209ad0bfce71"
+notes: "Operational Guidelines (Revised). Covers eligibility, exclusion categories, and financial benefit quantum."

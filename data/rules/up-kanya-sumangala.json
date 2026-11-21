@@ -1,0 +1,54 @@
+[
+  {
+    "rule_id": "up-kanya-sumangala-is-girl-child",
+    "scheme_id": "up-kanya-sumangala",
+    "field": "applicant_is_girl",
+    "operator": "eq",
+    "value": true,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Beneficiary must be a girl child (female).",
+    "description_hi": "लाभार्थी एक बालिका (महिला) होनी चाहिए।",
+    "source_clause": "UP Kanya Sumangala Yojana Guidelines – Eligibility, Clause 3(i)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "up-kanya-sumangala-up-domicile",
+    "scheme_id": "up-kanya-sumangala",
+    "field": "state_domicile",
+    "operator": "eq",
+    "value": "Uttar Pradesh",
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Family must be a permanent resident (domicile) of Uttar Pradesh.",
+    "description_hi": "परिवार उत्तर प्रदेश का स्थायी निवासी होना चाहिए।",
+    "source_clause": "UP Kanya Sumangala Yojana Guidelines – Eligibility, Clause 3(ii)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "up-kanya-sumangala-income-limit",
+    "scheme_id": "up-kanya-sumangala",
+    "field": "annual_family_income",
+    "operator": "lte",
+    "value": 300000,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Annual family income must not exceed Rs 3 lakh.",
+    "description_hi": "वार्षिक पारिवारिक आय 3 लाख रुपये से अधिक नहीं होनी चाहिए।",
+    "source_clause": "UP Kanya Sumangala Yojana Guidelines – Eligibility, Clause 3(iii)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "up-kanya-sumangala-max-two-girls",
+    "scheme_id": "up-kanya-sumangala",
+    "field": "number_of_girls_in_family",
+    "operator": "lte",
+    "value": 2,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Scheme benefit is limited to a maximum of two girl children per family.",
+    "description_hi": "योजना का लाभ एक परिवार में अधिकतम दो बालिकाओं तक सीमित है।",
+    "source_clause": "UP Kanya Sumangala Yojana Guidelines – Eligibility, Clause 3(iv)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  }
+]

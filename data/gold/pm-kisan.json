@@ -1,0 +1,139 @@
+[
+  {
+    "test_id": "pm-kisan-gold-01-fully-eligible",
+    "description": "Small farmer, owns land, no exclusions – should be ELIGIBLE on all rules.",
+    "profile": {
+      "owns_cultivable_land": true,
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": false,
+      "holds_constitutional_post": false,
+      "monthly_pension_amount": 0
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "ELIGIBLE",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "ELIGIBLE",
+      "pm-kisan-pension-limit":          "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-02-no-land",
+    "description": "Person with no cultivable land – NOT_ELIGIBLE on land rule.",
+    "profile": {
+      "owns_cultivable_land": false,
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": false,
+      "holds_constitutional_post": false,
+      "monthly_pension_amount": 0
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "NOT_ELIGIBLE",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "ELIGIBLE",
+      "pm-kisan-pension-limit":          "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-03-income-tax-payer",
+    "description": "Farmer who paid income tax last year – NOT_ELIGIBLE on tax rule.",
+    "profile": {
+      "owns_cultivable_land": true,
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": true,
+      "holds_constitutional_post": false,
+      "monthly_pension_amount": 0
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "ELIGIBLE",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "NOT_ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "ELIGIBLE",
+      "pm-kisan-pension-limit":          "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-04-high-pension",
+    "description": "Retired pensioner with Rs 12,000/month – NOT_ELIGIBLE on pension rule.",
+    "profile": {
+      "owns_cultivable_land": true,
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": false,
+      "holds_constitutional_post": false,
+      "monthly_pension_amount": 12000
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "ELIGIBLE",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "ELIGIBLE",
+      "pm-kisan-pension-limit":          "NOT_ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-05-pension-at-boundary",
+    "description": "Pensioner at exactly Rs 10,000/month – NOT_ELIGIBLE (gte 10000 excluded).",
+    "profile": {
+      "owns_cultivable_land": true,
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": false,
+      "holds_constitutional_post": false,
+      "monthly_pension_amount": 10000
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "ELIGIBLE",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "ELIGIBLE",
+      "pm-kisan-pension-limit":          "NOT_ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-06-constitutional-post",
+    "description": "Current MP – NOT_ELIGIBLE on constitutional post rule.",
+    "profile": {
+      "owns_cultivable_land": true,
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": false,
+      "holds_constitutional_post": true,
+      "monthly_pension_amount": 0
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "ELIGIBLE",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "NOT_ELIGIBLE",
+      "pm-kisan-pension-limit":          "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-07-missing-land-field",
+    "description": "Profile does not include land ownership – engine must ask (NEEDS_MORE_INFO).",
+    "profile": {
+      "is_institutional_landholder": false,
+      "paid_income_tax_last_year": false,
+      "holds_constitutional_post": false,
+      "monthly_pension_amount": 0
+    },
+    "expected": {
+      "pm-kisan-owns-land":              "NEEDS_MORE_INFO",
+      "pm-kisan-not-institutional":      "ELIGIBLE",
+      "pm-kisan-no-income-tax":          "ELIGIBLE",
+      "pm-kisan-no-constitutional-post": "ELIGIBLE",
+      "pm-kisan-pension-limit":          "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pm-kisan-gold-08-empty-profile",
+    "description": "Completely empty profile – every rule returns NEEDS_MORE_INFO.",
+    "profile": {},
+    "expected": {
+      "pm-kisan-owns-land":              "NEEDS_MORE_INFO",
+      "pm-kisan-not-institutional":      "NEEDS_MORE_INFO",
+      "pm-kisan-no-income-tax":          "NEEDS_MORE_INFO",
+      "pm-kisan-no-constitutional-post": "NEEDS_MORE_INFO",
+      "pm-kisan-pension-limit":          "NEEDS_MORE_INFO"
+    }
+  }
+]

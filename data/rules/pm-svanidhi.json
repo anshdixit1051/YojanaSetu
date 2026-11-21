@@ -1,0 +1,41 @@
+[
+  {
+    "rule_id": "pm-svanidhi-is-street-vendor",
+    "scheme_id": "pm-svanidhi",
+    "field": "is_street_vendor",
+    "operator": "eq",
+    "value": true,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Applicant must be a street vendor who was vending on or before 24th March 2020.",
+    "description_hi": "आवेदक एक पथ विक्रेता होना चाहिए जो 24 मार्च 2020 को या उससे पहले विक्रय कर रहा था।",
+    "source_clause": "PM SVANidhi Scheme Guidelines – Eligibility, Section 3(i)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "pm-svanidhi-has-certificate-or-identity",
+    "scheme_id": "pm-svanidhi",
+    "field": "has_vending_certificate_or_identity",
+    "operator": "eq",
+    "value": true,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Vendor must have a Certificate of Vending / Identity Card issued by ULB, or a letter of recommendation from ULB/Town Vending Committee.",
+    "description_hi": "विक्रेता के पास ULB द्वारा जारी वेंडिंग प्रमाण पत्र/पहचान पत्र होना चाहिए, या ULB/टाउन वेंडिंग कमेटी से अनुशंसा पत्र होना चाहिए।",
+    "source_clause": "PM SVANidhi Scheme Guidelines – Eligibility, Section 3(ii)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "pm-svanidhi-no-existing-loan",
+    "scheme_id": "pm-svanidhi",
+    "field": "has_active_svanidhi_loan",
+    "operator": "eq",
+    "value": false,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Vendor must not already have an active PM SVANidhi loan.",
+    "description_hi": "विक्रेता के पास पहले से सक्रिय PM SVANidhi ऋण नहीं होना चाहिए।",
+    "source_clause": "PM SVANidhi Scheme Guidelines – Eligibility, Section 3(iii)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "test_id": "ksyp-gold-01-fully-eligible",
+    "description": "Girl child, UP domicile, low income, only child – all ELIGIBLE.",
+    "profile": {
+      "applicant_is_girl": true,
+      "state_domicile": "Uttar Pradesh",
+      "annual_family_income": 200000,
+      "number_of_girls_in_family": 1
+    },
+    "expected": {
+      "up-kanya-sumangala-is-girl-child":   "ELIGIBLE",
+      "up-kanya-sumangala-up-domicile":     "ELIGIBLE",
+      "up-kanya-sumangala-income-limit":    "ELIGIBLE",
+      "up-kanya-sumangala-max-two-girls":   "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "ksyp-gold-02-not-girl",
+    "description": "Male applicant – NOT_ELIGIBLE on gender rule.",
+    "profile": {
+      "applicant_is_girl": false,
+      "state_domicile": "Uttar Pradesh",
+      "annual_family_income": 200000,
+      "number_of_girls_in_family": 1
+    },
+    "expected": {
+      "up-kanya-sumangala-is-girl-child":   "NOT_ELIGIBLE",
+      "up-kanya-sumangala-up-domicile":     "ELIGIBLE",
+      "up-kanya-sumangala-income-limit":    "ELIGIBLE",
+      "up-kanya-sumangala-max-two-girls":   "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "ksyp-gold-03-wrong-state",
+    "description": "Family from Delhi – NOT_ELIGIBLE on domicile rule.",
+    "profile": {
+      "applicant_is_girl": true,
+      "state_domicile": "Delhi",
+      "annual_family_income": 200000,
+      "number_of_girls_in_family": 1
+    },
+    "expected": {
+      "up-kanya-sumangala-is-girl-child":   "ELIGIBLE",
+      "up-kanya-sumangala-up-domicile":     "NOT_ELIGIBLE",
+      "up-kanya-sumangala-income-limit":    "ELIGIBLE",
+      "up-kanya-sumangala-max-two-girls":   "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "ksyp-gold-04-income-too-high",
+    "description": "Income Rs 4 lakh – NOT_ELIGIBLE on income rule.",
+    "profile": {
+      "applicant_is_girl": true,
+      "state_domicile": "Uttar Pradesh",
+      "annual_family_income": 400000,
+      "number_of_girls_in_family": 1
+    },
+    "expected": {
+      "up-kanya-sumangala-is-girl-child":   "ELIGIBLE",
+      "up-kanya-sumangala-up-domicile":     "ELIGIBLE",
+      "up-kanya-sumangala-income-limit":    "NOT_ELIGIBLE",
+      "up-kanya-sumangala-max-two-girls":   "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "ksyp-gold-05-three-girls",
+    "description": "Family has 3 girls – NOT_ELIGIBLE on two-girl limit.",
+    "profile": {
+      "applicant_is_girl": true,
+      "state_domicile": "Uttar Pradesh",
+      "annual_family_income": 200000,
+      "number_of_girls_in_family": 3
+    },
+    "expected": {
+      "up-kanya-sumangala-is-girl-child":   "ELIGIBLE",
+      "up-kanya-sumangala-up-domicile":     "ELIGIBLE",
+      "up-kanya-sumangala-income-limit":    "ELIGIBLE",
+      "up-kanya-sumangala-max-two-girls":   "NOT_ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "ksyp-gold-06-empty-profile",
+    "description": "Empty profile – all NEEDS_MORE_INFO.",
+    "profile": {},
+    "expected": {
+      "up-kanya-sumangala-is-girl-child":   "NEEDS_MORE_INFO",
+      "up-kanya-sumangala-up-domicile":     "NEEDS_MORE_INFO",
+      "up-kanya-sumangala-income-limit":    "NEEDS_MORE_INFO",
+      "up-kanya-sumangala-max-two-girls":   "NEEDS_MORE_INFO"
+    }
+  }
+]

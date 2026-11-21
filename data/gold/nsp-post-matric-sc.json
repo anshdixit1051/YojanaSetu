@@ -1,0 +1,77 @@
+[
+  {
+    "test_id": "nsp-sc-gold-01-fully-eligible",
+    "description": "SC student, UP domicile, low income, post-matric – all ELIGIBLE.",
+    "profile": {
+      "caste_category": "SC",
+      "annual_family_income": 180000,
+      "studying_at_post_matric_level": true,
+      "state_domicile": "Uttar Pradesh"
+    },
+    "expected": {
+      "nsp-post-matric-sc-is-sc-student":      "ELIGIBLE",
+      "nsp-post-matric-sc-income-limit":       "ELIGIBLE",
+      "nsp-post-matric-sc-post-matric-level":  "ELIGIBLE",
+      "nsp-post-matric-sc-domicile":           "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "nsp-sc-gold-02-not-sc",
+    "description": "OBC student – NOT_ELIGIBLE on caste rule.",
+    "profile": {
+      "caste_category": "OBC",
+      "annual_family_income": 180000,
+      "studying_at_post_matric_level": true,
+      "state_domicile": "Uttar Pradesh"
+    },
+    "expected": {
+      "nsp-post-matric-sc-is-sc-student":      "NOT_ELIGIBLE",
+      "nsp-post-matric-sc-income-limit":       "ELIGIBLE",
+      "nsp-post-matric-sc-post-matric-level":  "ELIGIBLE",
+      "nsp-post-matric-sc-domicile":           "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "nsp-sc-gold-03-income-too-high",
+    "description": "Income Rs 3 lakh – NOT_ELIGIBLE on income rule.",
+    "profile": {
+      "caste_category": "SC",
+      "annual_family_income": 300000,
+      "studying_at_post_matric_level": true,
+      "state_domicile": "Uttar Pradesh"
+    },
+    "expected": {
+      "nsp-post-matric-sc-is-sc-student":      "ELIGIBLE",
+      "nsp-post-matric-sc-income-limit":       "NOT_ELIGIBLE",
+      "nsp-post-matric-sc-post-matric-level":  "ELIGIBLE",
+      "nsp-post-matric-sc-domicile":           "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "nsp-sc-gold-04-wrong-state",
+    "description": "SC student from Bihar – NOT_ELIGIBLE on domicile rule.",
+    "profile": {
+      "caste_category": "SC",
+      "annual_family_income": 180000,
+      "studying_at_post_matric_level": true,
+      "state_domicile": "Bihar"
+    },
+    "expected": {
+      "nsp-post-matric-sc-is-sc-student":      "ELIGIBLE",
+      "nsp-post-matric-sc-income-limit":       "ELIGIBLE",
+      "nsp-post-matric-sc-post-matric-level":  "ELIGIBLE",
+      "nsp-post-matric-sc-domicile":           "NOT_ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "nsp-sc-gold-05-empty-profile",
+    "description": "Empty profile – all NEEDS_MORE_INFO.",
+    "profile": {},
+    "expected": {
+      "nsp-post-matric-sc-is-sc-student":      "NEEDS_MORE_INFO",
+      "nsp-post-matric-sc-income-limit":       "NEEDS_MORE_INFO",
+      "nsp-post-matric-sc-post-matric-level":  "NEEDS_MORE_INFO",
+      "nsp-post-matric-sc-domicile":           "NEEDS_MORE_INFO"
+    }
+  }
+]

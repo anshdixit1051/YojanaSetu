@@ -1,0 +1,77 @@
+[
+  {
+    "test_id": "pmjay-gold-01-fully-eligible",
+    "description": "SECC-listed, low income, no other scheme, no income tax – all ELIGIBLE.",
+    "profile": {
+      "paid_income_tax_last_year": false,
+      "in_secc_2011_database": true,
+      "covered_under_other_govt_health_scheme": false,
+      "annual_family_income": 120000
+    },
+    "expected": {
+      "ayushman-bharat-pmjay-not-income-tax-payer":    "ELIGIBLE",
+      "ayushman-bharat-pmjay-secc-listed":             "ELIGIBLE",
+      "ayushman-bharat-pmjay-no-govt-health-scheme":   "ELIGIBLE",
+      "ayushman-bharat-pmjay-cover-amount":            "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pmjay-gold-02-income-tax-payer",
+    "description": "Income tax payer – NOT_ELIGIBLE on tax rule.",
+    "profile": {
+      "paid_income_tax_last_year": true,
+      "in_secc_2011_database": false,
+      "covered_under_other_govt_health_scheme": false,
+      "annual_family_income": 900000
+    },
+    "expected": {
+      "ayushman-bharat-pmjay-not-income-tax-payer":    "NOT_ELIGIBLE",
+      "ayushman-bharat-pmjay-secc-listed":             "NOT_ELIGIBLE",
+      "ayushman-bharat-pmjay-no-govt-health-scheme":   "ELIGIBLE",
+      "ayushman-bharat-pmjay-cover-amount":            "NOT_ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pmjay-gold-03-not-in-secc",
+    "description": "Not in SECC 2011 database – NOT_ELIGIBLE on SECC rule.",
+    "profile": {
+      "paid_income_tax_last_year": false,
+      "in_secc_2011_database": false,
+      "covered_under_other_govt_health_scheme": false,
+      "annual_family_income": 200000
+    },
+    "expected": {
+      "ayushman-bharat-pmjay-not-income-tax-payer":    "ELIGIBLE",
+      "ayushman-bharat-pmjay-secc-listed":             "NOT_ELIGIBLE",
+      "ayushman-bharat-pmjay-no-govt-health-scheme":   "ELIGIBLE",
+      "ayushman-bharat-pmjay-cover-amount":            "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pmjay-gold-04-covered-by-cghs",
+    "description": "Already on CGHS – NOT_ELIGIBLE on duplicate scheme rule.",
+    "profile": {
+      "paid_income_tax_last_year": false,
+      "in_secc_2011_database": true,
+      "covered_under_other_govt_health_scheme": true,
+      "annual_family_income": 150000
+    },
+    "expected": {
+      "ayushman-bharat-pmjay-not-income-tax-payer":    "ELIGIBLE",
+      "ayushman-bharat-pmjay-secc-listed":             "ELIGIBLE",
+      "ayushman-bharat-pmjay-no-govt-health-scheme":   "NOT_ELIGIBLE",
+      "ayushman-bharat-pmjay-cover-amount":            "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "pmjay-gold-05-empty-profile",
+    "description": "No profile data – all NEEDS_MORE_INFO.",
+    "profile": {},
+    "expected": {
+      "ayushman-bharat-pmjay-not-income-tax-payer":    "NEEDS_MORE_INFO",
+      "ayushman-bharat-pmjay-secc-listed":             "NEEDS_MORE_INFO",
+      "ayushman-bharat-pmjay-no-govt-health-scheme":   "NEEDS_MORE_INFO",
+      "ayushman-bharat-pmjay-cover-amount":            "NEEDS_MORE_INFO"
+    }
+  }
+]

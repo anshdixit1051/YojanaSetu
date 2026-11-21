@@ -1,0 +1,54 @@
+[
+  {
+    "rule_id": "nsp-post-matric-sc-is-sc-student",
+    "scheme_id": "nsp-post-matric-sc",
+    "field": "caste_category",
+    "operator": "eq",
+    "value": "SC",
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Applicant must belong to Scheduled Caste (SC) category.",
+    "description_hi": "आवेदक अनुसूचित जाति (SC) वर्ग से संबंधित होना चाहिए।",
+    "source_clause": "NSP Post-Matric SC Scholarship Guidelines – Eligibility, Clause 4(a)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "nsp-post-matric-sc-income-limit",
+    "scheme_id": "nsp-post-matric-sc",
+    "field": "annual_family_income",
+    "operator": "lte",
+    "value": 250000,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Annual family income must not exceed Rs 2.5 lakh.",
+    "description_hi": "वार्षिक पारिवारिक आय 2.5 लाख रुपये से अधिक नहीं होनी चाहिए।",
+    "source_clause": "NSP Post-Matric SC Scholarship Guidelines – Eligibility, Clause 4(b)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "nsp-post-matric-sc-post-matric-level",
+    "scheme_id": "nsp-post-matric-sc",
+    "field": "studying_at_post_matric_level",
+    "operator": "eq",
+    "value": true,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Applicant must be studying at post-matriculation (Class 11 and above) level.",
+    "description_hi": "आवेदक को मैट्रिकोत्तर (कक्षा 11 और उससे ऊपर) स्तर पर अध्ययनरत होना चाहिए।",
+    "source_clause": "NSP Post-Matric SC Scholarship Guidelines – Eligibility, Clause 4(c)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "nsp-post-matric-sc-domicile",
+    "scheme_id": "nsp-post-matric-sc",
+    "field": "state_domicile",
+    "operator": "in",
+    "value": ["Uttar Pradesh"],
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Applicant must be a domicile of Uttar Pradesh (this instance is configured for UP).",
+    "description_hi": "आवेदक उत्तर प्रदेश का निवासी होना चाहिए।",
+    "source_clause": "NSP Post-Matric SC Scholarship Guidelines – Eligibility, Clause 4(d)",
+    "requires_human_judgement": false,
+    "status": "approved"
+  }
+]

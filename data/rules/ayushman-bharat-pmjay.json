@@ -1,0 +1,54 @@
+[
+  {
+    "rule_id": "ayushman-bharat-pmjay-not-income-tax-payer",
+    "scheme_id": "ayushman-bharat-pmjay",
+    "field": "paid_income_tax_last_year",
+    "operator": "eq",
+    "value": false,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Income tax paying families are not covered under PM-JAY.",
+    "description_hi": "आयकर देने वाले परिवार PM-JAY के अंतर्गत शामिल नहीं हैं।",
+    "source_clause": "PM-JAY Operational Guidelines – Exclusion Criteria",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "ayushman-bharat-pmjay-secc-listed",
+    "scheme_id": "ayushman-bharat-pmjay",
+    "field": "in_secc_2011_database",
+    "operator": "eq",
+    "value": true,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Family must be listed in the SECC 2011 database as a deprived/occupational category.",
+    "description_hi": "परिवार को SECC 2011 डेटाबेस में वंचित/व्यावसायिक श्रेणी के रूप में सूचीबद्ध होना चाहिए।",
+    "source_clause": "PM-JAY Operational Guidelines – Beneficiary Identification, Section 3.1",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "ayushman-bharat-pmjay-no-govt-health-scheme",
+    "scheme_id": "ayushman-bharat-pmjay",
+    "field": "covered_under_other_govt_health_scheme",
+    "operator": "eq",
+    "value": false,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Families already covered under CGHS, ECHS, or State government health schemes may not be additionally covered.",
+    "description_hi": "CGHS, ECHS या राज्य सरकारी स्वास्थ्य योजनाओं के अंतर्गत पहले से आच्छादित परिवारों को अतिरिक्त कवरेज नहीं मिल सकती।",
+    "source_clause": "PM-JAY Operational Guidelines – Exclusion Criteria, Section 4",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "ayushman-bharat-pmjay-cover-amount",
+    "scheme_id": "ayushman-bharat-pmjay",
+    "field": "annual_family_income",
+    "operator": "lte",
+    "value": 500000,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Scheme targets economically vulnerable families; Rs 5 lakh annual health cover provided.",
+    "description_hi": "योजना आर्थिक रूप से कमजोर परिवारों को लक्षित करती है; 5 लाख रुपये वार्षिक स्वास्थ्य कवर प्रदान किया जाता है।",
+    "source_clause": "PM-JAY Operational Guidelines – Scheme Overview, Section 2",
+    "requires_human_judgement": false,
+    "status": "approved"
+  }
+]

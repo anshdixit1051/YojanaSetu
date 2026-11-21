@@ -1,0 +1,54 @@
+[
+  {
+    "test_id": "svanidhi-gold-01-fully-eligible",
+    "description": "Registered street vendor, has identity card, no existing loan – all ELIGIBLE.",
+    "profile": {
+      "is_street_vendor": true,
+      "has_vending_certificate_or_identity": true,
+      "has_active_svanidhi_loan": false
+    },
+    "expected": {
+      "pm-svanidhi-is-street-vendor":           "ELIGIBLE",
+      "pm-svanidhi-has-certificate-or-identity": "ELIGIBLE",
+      "pm-svanidhi-no-existing-loan":            "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "svanidhi-gold-02-not-vendor",
+    "description": "Not a street vendor – NOT_ELIGIBLE on vendor rule.",
+    "profile": {
+      "is_street_vendor": false,
+      "has_vending_certificate_or_identity": false,
+      "has_active_svanidhi_loan": false
+    },
+    "expected": {
+      "pm-svanidhi-is-street-vendor":           "NOT_ELIGIBLE",
+      "pm-svanidhi-has-certificate-or-identity": "NOT_ELIGIBLE",
+      "pm-svanidhi-no-existing-loan":            "ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "svanidhi-gold-03-existing-loan",
+    "description": "Vendor already has active SVANidhi loan – NOT_ELIGIBLE on loan rule.",
+    "profile": {
+      "is_street_vendor": true,
+      "has_vending_certificate_or_identity": true,
+      "has_active_svanidhi_loan": true
+    },
+    "expected": {
+      "pm-svanidhi-is-street-vendor":           "ELIGIBLE",
+      "pm-svanidhi-has-certificate-or-identity": "ELIGIBLE",
+      "pm-svanidhi-no-existing-loan":            "NOT_ELIGIBLE"
+    }
+  },
+  {
+    "test_id": "svanidhi-gold-04-empty-profile",
+    "description": "Empty profile – all NEEDS_MORE_INFO.",
+    "profile": {},
+    "expected": {
+      "pm-svanidhi-is-street-vendor":           "NEEDS_MORE_INFO",
+      "pm-svanidhi-has-certificate-or-identity": "NEEDS_MORE_INFO",
+      "pm-svanidhi-no-existing-loan":            "NEEDS_MORE_INFO"
+    }
+  }
+]

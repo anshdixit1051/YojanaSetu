@@ -1,0 +1,67 @@
+[
+  {
+    "rule_id": "pm-kisan-owns-land",
+    "scheme_id": "pm-kisan",
+    "field": "owns_cultivable_land",
+    "operator": "eq",
+    "value": true,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Applicant family must own cultivable land as per State/UT land records.",
+    "description_hi": "आवेदक परिवार के पास राज्य/संघ राज्य क्षेत्र के भूमि अभिलेखों के अनुसार कृषि योग्य भूमि होनी चाहिए।",
+    "source_clause": "Section 2 – Definition of Farmer Family",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "pm-kisan-not-institutional",
+    "scheme_id": "pm-kisan",
+    "field": "is_institutional_landholder",
+    "operator": "eq",
+    "value": false,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Institutional landholders are not eligible.",
+    "description_hi": "संस्थागत भूमिधारक पात्र नहीं हैं।",
+    "source_clause": "Section 5(i) – Exclusion Categories",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "pm-kisan-no-income-tax",
+    "scheme_id": "pm-kisan",
+    "field": "paid_income_tax_last_year",
+    "operator": "eq",
+    "value": false,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Persons who paid income tax in the last assessment year are excluded.",
+    "description_hi": "जिन व्यक्तियों ने पिछले निर्धारण वर्ष में आयकर का भुगतान किया है, वे पात्र नहीं हैं।",
+    "source_clause": "Section 5(ii)(e) – Exclusion Categories",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "pm-kisan-no-constitutional-post",
+    "scheme_id": "pm-kisan",
+    "field": "holds_constitutional_post",
+    "operator": "eq",
+    "value": false,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Former or present holders of constitutional posts are excluded.",
+    "description_hi": "संवैधानिक पदों के पूर्व या वर्तमान धारक पात्र नहीं हैं।",
+    "source_clause": "Section 5(ii)(a) – Exclusion Categories",
+    "requires_human_judgement": false,
+    "status": "approved"
+  },
+  {
+    "rule_id": "pm-kisan-pension-limit",
+    "scheme_id": "pm-kisan",
+    "field": "monthly_pension_amount",
+    "operator": "lt",
+    "value": 10000,
+    "verdict_if_true": "ELIGIBLE",
+    "description_en": "Retired pensioners receiving Rs 10,000 or more per month are excluded (except MTS/Group D employees).",
+    "description_hi": "10,000 रुपये या उससे अधिक मासिक पेंशन प्राप्त करने वाले सेवानिवृत्त पेंशनभोगी पात्र नहीं हैं (MTS/Group D कर्मचारियों को छोड़कर)।",
+    "source_clause": "Section 5(ii)(d) – Exclusion Categories",
+    "requires_human_judgement": false,
+    "status": "approved"
+  }
+]

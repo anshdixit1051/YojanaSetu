@@ -90,14 +90,14 @@ def _validate_raw_rule(raw: dict[str, Any], scheme_id: str) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# LLM call (Gemini via google-generativeai)
+# LLM call (Gemini via the google-genai SDK, see yojanasetu/llm.py)
 # ---------------------------------------------------------------------------
 
 def _call_llm(system_prompt: str, user_prompt: str) -> str:
     """Call the configured LLM and return the raw text response.
 
-    Uses Google Gemini (google-generativeai) if GOOGLE_API_KEY is set,
-    otherwise raises RuntimeError with a helpful message.
+    Uses Google Gemini if GEMINI_API_KEY is set, otherwise raises
+    RuntimeError with a helpful message.
 
     Returns
     -------
@@ -114,34 +114,24 @@ def _call_llm(system_prompt: str, user_prompt: str) -> str:
     if settings.gemini_api_key is not None:
         return _call_gemini(
             settings.gemini_api_key.get_secret_value(),
-            settings.model_name if hasattr(settings, "model_name") else "gemini-1.5-flash",
+            settings.model_name,
             system_prompt,
             user_prompt,
         )
 
     raise RuntimeError(
-        "No LLM API key found.  Set GOOGLE_API_KEY in your .env file.\n"
+        "No LLM API key found.  Set GEMINI_API_KEY in your .env file.\n"
         "Get a free key at https://aistudio.google.com"
     )
 
 
 def _call_gemini(api_key: str, model_name: str, system_prompt: str, user_prompt: str) -> str:
     """Call the Gemini API and return the response text."""
-    try:
-        import google.generativeai as genai  # noqa: PLC0415
-    except ImportError as exc:
-        raise RuntimeError(
-            "google-generativeai is not installed. "
-            "Run: pip install google-generativeai"
-        ) from exc
+    from yojanasetu.llm import generate_text  # noqa: PLC0415
 
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel(
-        model_name=model_name,
-        system_instruction=system_prompt,
+    return generate_text(
+        system_prompt, user_prompt, api_key=api_key, model_name=model_name
     )
-    response = model.generate_content(user_prompt)
-    return response.text
 
 
 # ---------------------------------------------------------------------------

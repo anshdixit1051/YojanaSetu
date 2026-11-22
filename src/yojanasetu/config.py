@@ -8,7 +8,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import SecretStr
+from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -30,8 +30,16 @@ class Settings(BaseSettings):
     data_dir: Path = PROJECT_ROOT / "data"
 
     groq_api_key: SecretStr | None = None
-    gemini_api_key: SecretStr | None = None
-    model_name: str = "gemini-1.5-flash"   # LLM model for extraction (Phase 3+)
+    gemini_api_key: SecretStr | None = Field(
+        default=None,
+        validation_alias=AliasChoices("gemini_api_key", "google_api_key"),
+    )
+
+    # Gemini model used for rule extraction and the intake agent.
+    # Google retires model names often (gemini-1.5-flash and gemini-2.0-flash
+    # now return 404). Check https://ai.google.dev/gemini-api/docs/models and
+    # set MODEL_NAME in .env to a model your key can use.
+    model_name: str = "gemini-3.5-flash-lite"
 
     def require_groq_key(self) -> str:
         """Return the Groq key or fail with a clear message.

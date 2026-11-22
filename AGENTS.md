@@ -32,31 +32,41 @@ Student project: 16 GB RAM, no GPU, free and open-source tools only. Keep code b
 
 ## Repo layout (current)
 ```
-src/yojanasetu/config.py            # pydantic-settings, SecretStr for API keys
-src/yojanasetu/schemas/source_meta.py   # SchemeSourceMeta provenance model, load_meta()
-data/raw/<scheme-id>/meta.yaml      # source URL, download date, language, etc.
-data/raw/<scheme-id>/source.txt     # official text, pasted verbatim, UTF-8
-data/raw/_TEMPLATE/                 # copy per scheme; must NOT validate as real data
-data/rules/   data/gold/            # filled from Phase 2 onward
+src/yojanasetu/config.py                 # pydantic-settings, SecretStr for API keys
+src/yojanasetu/llm.py                    # unified LLM wrapper with google-genai
+src/yojanasetu/schemas/                  # provenance, rule, chunk models
+src/yojanasetu/engine/                   # deterministic rules evaluator & scheme aggregator
+src/yojanasetu/extraction/               # rule extraction prompts, extractor & review queue
+src/yojanasetu/retrieval/                # chunker, BM25, dense embeddings, RRF hybrid index
+src/yojanasetu/agent/                    # LangGraph intake agent (state, nodes, graph, fields)
+src/yojanasetu/api/                      # FastAPI endpoints (/health, /chat, /eligibility)
+src/yojanasetu/mcp_tools/                # FastMCP/MCPServer tools
+data/raw/<scheme-id>/meta.yaml           # source URL, download date, language, SHA-256
+data/raw/<scheme-id>/source.txt          # official text, pasted verbatim, UTF-8
+data/rules/<scheme-id>.json              # approved rules for 5 pilot schemes
+data/gold/<scheme-id>.json               # 36 gold test cases covering all branches
+data/index/hybrid.pkl                    # hybrid index of 49 chunks
 docs/decisions.md  docs/scheme_selection.md
-tests/
+scripts/validate_raw_data.py             # raw source & metadata validator
+scripts/build_index.py                   # index builder
+scripts/evaluate_retrieval.py            # Precision@5 retrieval evaluator
+tests/                                   # 344 passing unit & gold tests
 ```
-Planned later: `engine/`, `extraction/`, `retrieval/`, `agent/`, `api/`, `scripts/validate_raw_data.py`.
 
 ## Phase plan
 | Phase | Focus | Status |
 |---|---|---|
-| 0 | Repo, config, data layout, provenance model | in progress |
-| 1 | Deterministic rules engine | not started |
-| 2 | Hand-written rules + gold tests (5 schemes) | not started |
-| 3 | LLM rule extraction + human review queue | not started |
-| 4 | Hybrid retrieval (BM25 + bge-small) | not started |
-| 5 | LangGraph intake agent, FastAPI, MCP tools | not started |
-| 6 | Cited explanations (Hindi + English) | not started |
+| 0 | Repo, config, data layout, provenance model | **Complete** |
+| 1 | Deterministic rules engine | **Complete** |
+| 2 | Hand-written rules + gold tests (5 schemes) | **Complete** |
+| 3 | LLM rule extraction + human review queue | **Complete** |
+| 4 | Hybrid retrieval (BM25 + bge-small) | **Complete** (P@5 = 88%) |
+| 5 | LangGraph intake agent, FastAPI, MCP tools | **Complete** (344 tests) |
+| 6 | Cited explanations (Hindi + English) | *Next* |
 | 7 | Frontend, Docker, deployment | not started |
 | 8 | Evaluation, README, viva prep | not started |
 
-Phase 0 status: config, provenance model, tests, data template, README and docs are written. Next: `scripts/validate_raw_data.py` (checks every scheme folder: valid meta, `scheme_id` equals folder name, `source.txt` non-empty, UTF-8, NFC-normalized, not the template text, fills `source_sha256`), then collect one trial scheme.
+Current status: Phases 0 through 5 are complete with 344 / 344 tests passing. All 5 pilot schemes are loaded with official sources and validated. Next: Phase 6 (Cited explanations in Hindi + English).
 
 ## How to work in this repo
 - Work one phase at a time, one file at a time. Do not build later phases early.

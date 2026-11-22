@@ -1,6 +1,6 @@
 [
   {
-    "test_id": "svanidhi-gold-01-fully-eligible",
+    "test_id": "pm-svanidhi-gold-01-fully-eligible",
     "description": "Registered street vendor, has identity card, no existing loan – all ELIGIBLE.",
     "profile": {
       "is_street_vendor": true,
@@ -14,7 +14,7 @@
     }
   },
   {
-    "test_id": "svanidhi-gold-02-not-vendor",
+    "test_id": "pm-svanidhi-gold-02-not-vendor",
     "description": "Not a street vendor – NOT_ELIGIBLE on vendor rule.",
     "profile": {
       "is_street_vendor": false,
@@ -28,7 +28,7 @@
     }
   },
   {
-    "test_id": "svanidhi-gold-03-existing-loan",
+    "test_id": "pm-svanidhi-gold-03-existing-loan",
     "description": "Vendor already has active SVANidhi loan – NOT_ELIGIBLE on loan rule.",
     "profile": {
       "is_street_vendor": true,
@@ -42,7 +42,7 @@
     }
   },
   {
-    "test_id": "svanidhi-gold-04-empty-profile",
+    "test_id": "pm-svanidhi-gold-04-empty-profile",
     "description": "Empty profile – all NEEDS_MORE_INFO.",
     "profile": {},
     "expected": {

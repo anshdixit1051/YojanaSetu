@@ -1,6 +1,6 @@
 [
   {
-    "test_id": "pmjay-gold-01-fully-eligible",
+    "test_id": "ayushman-bharat-pmjay-gold-01-fully-eligible",
     "description": "SECC-listed, low income, no other scheme, no income tax – all ELIGIBLE.",
     "profile": {
       "paid_income_tax_last_year": false,
@@ -16,7 +16,7 @@
     }
   },
   {
-    "test_id": "pmjay-gold-02-income-tax-payer",
+    "test_id": "ayushman-bharat-pmjay-gold-02-income-tax-payer",
     "description": "Income tax payer – NOT_ELIGIBLE on tax rule.",
     "profile": {
       "paid_income_tax_last_year": true,
@@ -32,7 +32,7 @@
     }
   },
   {
-    "test_id": "pmjay-gold-03-not-in-secc",
+    "test_id": "ayushman-bharat-pmjay-gold-03-not-in-secc",
     "description": "Not in SECC 2011 database – NOT_ELIGIBLE on SECC rule.",
     "profile": {
       "paid_income_tax_last_year": false,
@@ -48,7 +48,7 @@
     }
   },
   {
-    "test_id": "pmjay-gold-04-covered-by-cghs",
+    "test_id": "ayushman-bharat-pmjay-gold-04-covered-by-cghs",
     "description": "Already on CGHS – NOT_ELIGIBLE on duplicate scheme rule.",
     "profile": {
       "paid_income_tax_last_year": false,
@@ -64,7 +64,7 @@
     }
   },
   {
-    "test_id": "pmjay-gold-05-empty-profile",
+    "test_id": "ayushman-bharat-pmjay-gold-05-empty-profile",
     "description": "No profile data – all NEEDS_MORE_INFO.",
     "profile": {},
     "expected": {

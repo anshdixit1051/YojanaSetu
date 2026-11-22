@@ -1,6 +1,6 @@
 [
   {
-    "test_id": "ksyp-gold-01-fully-eligible",
+    "test_id": "up-kanya-sumangala-gold-01-fully-eligible",
     "description": "Girl child, UP domicile, low income, only child – all ELIGIBLE.",
     "profile": {
       "applicant_is_girl": true,
@@ -16,7 +16,7 @@
     }
   },
   {
-    "test_id": "ksyp-gold-02-not-girl",
+    "test_id": "up-kanya-sumangala-gold-02-not-girl",
     "description": "Male applicant – NOT_ELIGIBLE on gender rule.",
     "profile": {
       "applicant_is_girl": false,
@@ -32,7 +32,7 @@
     }
   },
   {
-    "test_id": "ksyp-gold-03-wrong-state",
+    "test_id": "up-kanya-sumangala-gold-03-wrong-state",
     "description": "Family from Delhi – NOT_ELIGIBLE on domicile rule.",
     "profile": {
       "applicant_is_girl": true,
@@ -48,7 +48,7 @@
     }
   },
   {
-    "test_id": "ksyp-gold-04-income-too-high",
+    "test_id": "up-kanya-sumangala-gold-04-income-too-high",
     "description": "Income Rs 4 lakh – NOT_ELIGIBLE on income rule.",
     "profile": {
       "applicant_is_girl": true,
@@ -64,7 +64,7 @@
     }
   },
   {
-    "test_id": "ksyp-gold-05-three-girls",
+    "test_id": "up-kanya-sumangala-gold-05-three-girls",
     "description": "Family has 3 girls – NOT_ELIGIBLE on two-girl limit.",
     "profile": {
       "applicant_is_girl": true,
@@ -80,7 +80,7 @@
     }
   },
   {
-    "test_id": "ksyp-gold-06-empty-profile",
+    "test_id": "up-kanya-sumangala-gold-06-empty-profile",
     "description": "Empty profile – all NEEDS_MORE_INFO.",
     "profile": {},
     "expected": {

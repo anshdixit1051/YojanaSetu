@@ -8,16 +8,33 @@ An agentic government-scheme eligibility navigator for India (Hindi + English).
 > documents into validated JSON, (2) runs the intake conversation, and
 > (3) explains results with citations.
 
-**Status:** Phase 0 (setup) in progress.
+**Status:** Phase 5 complete (344 tests passing). Ready for Phase 6 (Cited explanations).
 
 ## Why this project
 
-TODO (Phase 8): 3-4 lines on the problem: people miss schemes they qualify for
-because criteria are scattered across long official documents.
+Many citizens miss out on government schemes they qualify for because eligibility criteria are scattered across dense, multi-page PDFs in legalese. YojanaSetu provides a conversational intake in Hindi and English, matches facts deterministically against human-verified rules, and explains eligibility with citations to official gazettes and portals.
 
 ## Architecture
 
-TODO (Phase 8): add the diagram once the engine, extraction, retrieval and agent exist.
+```
+User (Chat / API / MCP)
+       │
+       ▼
+[LangGraph Intake Agent] ── extracts user profile facts via LLM
+       │
+       ▼
+[Hybrid Retrieval (BM25 + bge-small)] ── finds relevant schemes & source clauses
+       │
+       ▼
+[Deterministic Rules Engine] ◄── [Human-Approved Rules] (JSON)
+       │
+       ├── ELIGIBLE
+       ├── NOT_ELIGIBLE (with deciding rule & clause)
+       └── NEEDS_MORE_INFO (with specific missing fields)
+       │
+       ▼
+[Explanation & Citation Generator] ── bilingual summary citing official sources
+```
 
 ## Setup
 
@@ -26,35 +43,53 @@ python -m venv .venv
 .venv\Scripts\activate          # Windows (macOS/Linux: source .venv/bin/activate)
 pip install -e ".[dev]"
 copy .env.example .env          # macOS/Linux: cp .env.example .env
-pytest
+pytest -v
 ```
 
 Never commit `.env`. API keys live only there.
 
-## Data layout
+## Data & Code Layout
 
 ```
-data/raw/<scheme-id>/meta.yaml    # provenance: source URL, download date, language
-data/raw/<scheme-id>/source.txt   # official text, pasted verbatim
-data/rules/                       # validated rule JSON (Phase 2+)
-data/gold/                        # hand-written test cases (Phase 2+)
+data/raw/<scheme-id>/meta.yaml    # provenance: source URL, download date, language, SHA-256
+data/raw/<scheme-id>/source.txt   # official text, pasted verbatim (UTF-8 NFC)
+data/rules/<scheme-id>.json       # human-approved deterministic rule definitions
+data/gold/<scheme-id>.json        # gold test profiles covering all eligibility branches
+data/index/hybrid.pkl             # hybrid retrieval index (BM25 + bge-small embeddings)
+
+src/yojanasetu/
+├── config.py                     # pydantic-settings configuration
+├── llm.py                        # unified LLM client (google-genai SDK)
+├── schemas/                      # provenance, rule, and chunk models
+├── engine/                       # deterministic 3-valued logic rule evaluator & aggregator
+├── extraction/                   # LLM rule extraction pipeline & review queue
+├── retrieval/                    # chunking, BM25, dense embeddings, RRF hybrid search
+├── agent/                        # LangGraph conversational intake state graph & summary
+├── api/                          # FastAPI REST endpoints (/health, /chat, /eligibility)
+└── mcp_tools/                    # Model Context Protocol server exposing scheme tools
 ```
 
-Every scheme must record where its text came from and when it was downloaded.
+## Supported Pilot Schemes (5 initial)
+
+1. **PM-KISAN** (`pm-kisan`): Small & marginal farmer income support
+2. **Ayushman Bharat PM-JAY** (`ayushman-bharat-pmjay`): Free secondary/tertiary health cover (₹5 lakh/year)
+3. **NSP Post-Matric Scholarship for SC** (`nsp-post-matric-sc`): Higher education financial assistance
+4. **PM SVANidhi** (`pm-svanidhi`): Micro-credit collateral-free working capital for urban street vendors
+5. **UP Mukhya Mantri Kanya Sumangala Yojana** (`up-kanya-sumangala`): Conditional cash transfers for girl children in UP
 
 ## Phases
 
 | Phase | Focus | Status |
 |---|---|---|
-| 0 | Repo, config, data layout | in progress |
-| 1 | Deterministic rules engine | not started |
-| 2 | Hand-written rules + gold tests (5 schemes) | not started |
-| 3 | LLM rule extraction + human review | not started |
-| 4 | Hybrid retrieval (BM25 + bge-small) | not started |
-| 5 | LangGraph intake agent, FastAPI, MCP | not started |
-| 6 | Cited explanations (Hindi + English) | not started |
-| 7 | Frontend, Docker, deployment | not started |
-| 8 | Evaluation, README, viva prep | not started |
+| 0 | Repo, config, data layout, provenance model | **Complete** |
+| 1 | Deterministic rules engine (3-valued logic) | **Complete** |
+| 2 | Hand-written rules + gold tests (5 schemes, 36 cases) | **Complete** |
+| 3 | LLM rule extraction + human review queue | **Complete** |
+| 4 | Hybrid retrieval (BM25 + bge-small, P@5 = 88%) | **Complete** |
+| 5 | LangGraph intake agent, FastAPI, MCP tools | **Complete** (344 tests passing) |
+| 6 | Cited explanations (Hindi + English) | *Next* |
+| 7 | Frontend, Docker, deployment | Planned |
+| 8 | Evaluation, README, viva prep | Planned |
 
 ## Limitations
 

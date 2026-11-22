@@ -1,6 +1,6 @@
 [
   {
-    "test_id": "nsp-sc-gold-01-fully-eligible",
+    "test_id": "nsp-post-matric-sc-gold-01-fully-eligible",
     "description": "SC student, UP domicile, low income, post-matric – all ELIGIBLE.",
     "profile": {
       "caste_category": "SC",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "test_id": "nsp-sc-gold-02-not-sc",
+    "test_id": "nsp-post-matric-sc-gold-02-not-sc",
     "description": "OBC student – NOT_ELIGIBLE on caste rule.",
     "profile": {
       "caste_category": "OBC",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "test_id": "nsp-sc-gold-03-income-too-high",
+    "test_id": "nsp-post-matric-sc-gold-03-income-too-high",
     "description": "Income Rs 3 lakh – NOT_ELIGIBLE on income rule.",
     "profile": {
       "caste_category": "SC",
@@ -48,7 +48,7 @@
     }
   },
   {
-    "test_id": "nsp-sc-gold-04-wrong-state",
+    "test_id": "nsp-post-matric-sc-gold-04-wrong-state",
     "description": "SC student from Bihar – NOT_ELIGIBLE on domicile rule.",
     "profile": {
       "caste_category": "SC",
@@ -64,7 +64,7 @@
     }
   },
   {
-    "test_id": "nsp-sc-gold-05-empty-profile",
+    "test_id": "nsp-post-matric-sc-gold-05-empty-profile",
     "description": "Empty profile – all NEEDS_MORE_INFO.",
     "profile": {},
     "expected": {

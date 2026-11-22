@@ -1,0 +1,41 @@
+Source: Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (PM-JAY) Operational Guidelines
+Downloaded from: https://pmjay.gov.in/sites/default/files/2019-03/PM-JAY_Guidelines_English.pdf
+Download date: 2026-11-21
+
+---
+
+AYUSHMAN BHARAT - PRADHAN MANTRI JAN AROGYA YOJANA (PM-JAY)
+
+OPERATIONAL GUIDELINES
+
+National Health Authority (NHA)
+Ministry of Health and Family Welfare
+Government of India
+
+---
+
+Section 2 – Scheme Overview
+
+Ayushman Bharat - National Health Protection Mission will cover over 10 crore poor and vulnerable families (approximately 50 crore beneficiaries) providing coverage up to 5 lakh rupees per family per year for secondary and tertiary care hospitalization. The scheme targets economically vulnerable families whose annual family income is within vulnerable limits (up to Rs 5,00,000 cover provided per family per year on a family floater basis). The health benefit cover is fully funded by the government and benefits are cashless across public and empanelled private hospitals.
+
+---
+
+Section 3 – Beneficiary Identification
+
+Section 3.1: Beneficiary Identification System
+The beneficiaries under PM-JAY are identified based on the Socio-Economic Caste Census (SECC) 2011 database. In rural areas, households belonging to specified deprivation categories (D1, D2, D3, D4, D5, and D7) and automatically included categories are eligible. In urban areas, households belonging to 11 defined occupational categories of workers are entitled for benefit. To be eligible under the scheme, a family must be listed in the SECC 2011 database under the deprived or occupational categories.
+
+---
+
+Section 4 – Exclusion Criteria
+
+PM-JAY Operational Guidelines – Exclusion Criteria
+
+Families with the following conditions shall not be eligible for benefit under the scheme:
+(i) Income tax paying families: Any family where one or more members paid income tax in the last assessment year is excluded from PM-JAY coverage.
+(ii) Government health schemes: Families already covered under other statutory or government health protection schemes such as CGHS (Central Government Health Scheme), ECHS (Ex-Servicemen Contributory Health Scheme), or corresponding State government health schemes shall not be eligible for additional duplicate coverage under PM-JAY.
+(iii) Families owning motorized three/four wheelers, mechanized fishing boats, or households with government employees in regular service.
+
+---
+
+NOTE: Official text copied verbatim from the guidelines. Save as UTF-8.

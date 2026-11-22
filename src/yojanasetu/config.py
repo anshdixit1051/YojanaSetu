@@ -31,6 +31,7 @@ class Settings(BaseSettings):
 
     groq_api_key: SecretStr | None = None
     gemini_api_key: SecretStr | None = None
+    model_name: str = "gemini-1.5-flash"   # LLM model for extraction (Phase 3+)
 
     def require_groq_key(self) -> str:
         """Return the Groq key or fail with a clear message.

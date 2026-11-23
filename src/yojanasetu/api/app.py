@@ -119,6 +119,7 @@ class EligibilityResponse(BaseModel):
     scheme_id: str
     scheme_verdict: dict[str, Any]
     results: list[dict[str, Any]]
+    explanation: dict[str, Any] | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -191,9 +192,23 @@ def check_eligibility(req: EligibilityRequest) -> EligibilityResponse:
             detail=f"No rules found for scheme '{req.scheme_id}'.",
         ) from None
 
-    verdict = evaluate_scheme_verdict(req.scheme_id, rules, req.profile)
+    from yojanasetu.agent.fields import build_field_catalog, validate_profile  # noqa: PLC0415
+
+    catalog = build_field_catalog([req.scheme_id])
+    clean_profile, errors = validate_profile(req.profile, catalog)
+    if errors:
+        raise HTTPException(
+            status_code=422,
+            detail={"message": "Invalid profile fields", "errors": errors},
+        )
+
+    verdict = evaluate_scheme_verdict(req.scheme_id, rules, clean_profile)
+    from yojanasetu.explanation.generator import generate_explanation  # noqa: PLC0415
+
+    expl = generate_explanation(verdict)
     return EligibilityResponse(
         scheme_id=req.scheme_id,
         scheme_verdict=verdict.as_dict(),
         results=[r.as_dict() for r in verdict.rule_results],
+        explanation=expl.as_dict(),
     )

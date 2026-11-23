@@ -8,7 +8,7 @@ An agentic government-scheme eligibility navigator for India (Hindi + English).
 > documents into validated JSON, (2) runs the intake conversation, and
 > (3) explains results with citations.
 
-**Status:** Phase 5 complete (344 tests passing). Ready for Phase 6 (Cited explanations).
+**Status:** Phase 6 complete (362 tests passing, 76 quarantined tests cleanly skipped awaiting official source text). Ready for Phase 7 (Frontend, Docker, deployment).
 
 ## Why this project
 
@@ -71,28 +71,38 @@ src/yojanasetu/
 
 ## Supported Pilot Schemes (5 initial)
 
-1. **PM-KISAN** (`pm-kisan`): Small & marginal farmer income support
-2. **Ayushman Bharat PM-JAY** (`ayushman-bharat-pmjay`): Free secondary/tertiary health cover (₹5 lakh/year)
-3. **NSP Post-Matric Scholarship for SC** (`nsp-post-matric-sc`): Higher education financial assistance
-4. **PM SVANidhi** (`pm-svanidhi`): Micro-credit collateral-free working capital for urban street vendors
-5. **UP Mukhya Mantri Kanya Sumangala Yojana** (`up-kanya-sumangala`): Conditional cash transfers for girl children in UP
+1. **PM-KISAN** (`pm-kisan`): Small & marginal farmer income support — **Fully verified** against official guidelines (`source.txt`), rules approved with verbatim source quotes.
+2. **Ayushman Bharat PM-JAY** (`ayushman-bharat-pmjay`): Free secondary/tertiary health cover (₹5 lakh/year) — *Quarantined in pending_review awaiting official source document.*
+3. **NSP Post-Matric Scholarship for SC** (`nsp-post-matric-sc`): Higher education financial assistance — *Quarantined in pending_review awaiting official source document.*
+4. **PM SVANidhi** (`pm-svanidhi`): Micro-credit collateral-free working capital for urban street vendors — *Quarantined in pending_review awaiting official source document.*
+5. **UP Mukhya Mantri Kanya Sumangala Yojana** (`up-kanya-sumangala`): Conditional cash transfers for girl children in UP — *Quarantined in pending_review awaiting official source document.*
+
+## Useful Scripts
+
+```bash
+python scripts/check_llm.py            # Zero-leak connectivity tester for Gemini API
+python scripts/review_rules.py         # Human-in-the-loop review queue requiring exact verbatim quotes
+python scripts/validate_raw_data.py    # Verify raw folder layout and YAML provenance
+python scripts/build_index.py          # Build the hybrid retrieval index
+```
 
 ## Phases
 
 | Phase | Focus | Status |
 |---|---|---|
 | 0 | Repo, config, data layout, provenance model | **Complete** |
-| 1 | Deterministic rules engine (3-valued logic) | **Complete** |
-| 2 | Hand-written rules + gold tests (5 schemes, 36 cases) | **Complete** |
-| 3 | LLM rule extraction + human review queue | **Complete** |
+| 1 | Deterministic rules engine (3-valued logic, exempt_if) | **Complete** |
+| 2 | Hand-written rules + gold tests (PM-KISAN verified; 4 pending source.txt) | **Complete** |
+| 3 | LLM rule extraction + human review queue (quote verification) | **Complete** |
 | 4 | Hybrid retrieval (BM25 + bge-small, P@5 = 88%) | **Complete** |
-| 5 | LangGraph intake agent, FastAPI, MCP tools | **Complete** (344 tests passing) |
-| 6 | Cited explanations (Hindi + English) | *Next* |
-| 7 | Frontend, Docker, deployment | Planned |
+| 5 | LangGraph intake agent, FastAPI, MCP tools | **Complete** |
+| 6 | Cited explanations (Hindi + English) | **Complete** (362 passed, 76 skipped) |
+| 7 | Frontend, Docker, deployment | *Next* |
 | 8 | Evaluation, README, viva prep | Planned |
 
 ## Limitations
 
+Eligibility is based only on facts the user states; it is not verified.
 Eligibility shown here is based only on published criteria in the stored source
 documents. It is not a guarantee of benefit. Always confirm on the official portal.
 
